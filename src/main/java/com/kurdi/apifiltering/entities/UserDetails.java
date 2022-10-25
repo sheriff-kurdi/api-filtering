@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 
 @Entity
 @Table(name = "users_details")
@@ -14,18 +15,10 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Data
 @Builder
-public class UserDetails {
-    @Id
-    @GeneratedValue(strategy = GenerationType.AUTO)
-    int id;
+public class UserDetails implements Serializable {
+    @EmbeddedId
+    UserDetailsId UserDetailsId;
     String name;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id", nullable=false)
-    @JsonIgnore
-    User user;
 
-    @ManyToOne
-    @JoinColumn(name = "language_code")
-    Language language;
 }

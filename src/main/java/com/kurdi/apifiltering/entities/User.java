@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import javax.persistence.*;
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,12 +16,12 @@ import java.util.List;
 @NoArgsConstructor
 @Data
 @Builder
-public class User {
+public class User implements Serializable {
     @Id
     @GeneratedValue(strategy = GenerationType.AUTO)
     int id;
     int age;
 
-    @OneToMany(mappedBy = "user")
+    @OneToMany(mappedBy = "UserDetailsId.user")
     List<UserDetails> userDetails = new ArrayList<>();
 }
