@@ -22,6 +22,6 @@ public class User implements Serializable {
     int id;
     int age;
 
-    @OneToMany(mappedBy = "UserDetailsId.user")
+    @OneToMany(mappedBy = "UserDetailsId.user", fetch = FetchType.EAGER)
     List<UserDetails> userDetails = new ArrayList<>();
 }
